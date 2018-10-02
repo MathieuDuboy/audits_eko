@@ -34,7 +34,10 @@
 <body>
   <?php
   include('php/config.php');
-
+  $sql = "SELECT * from audits2018_audits  WHERE id = '".$_GET['id_audit']."'";
+  $result=mysqli_query($db,$sql);
+  $row = mysqli_fetch_array($result);
+  $etat = $row['etat'];
   ?>
   <input type="hidden" name="id_audit_audit" id="id_audit_audit" value="<?php echo $_GET['id_audit']; ?>" />
   <div class="row">
@@ -1060,7 +1063,7 @@
   </div>
 
   <?php
-  if( ($pts_nb_total) == 1 && ($row['etat'] == 'En cours Inventaire')) {
+  if( ($pts_nb_total == 1) && ($etat == 'En cours Inventaire')) {
     $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Points' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
     $result   = mysqli_query($db, $sql);
   }

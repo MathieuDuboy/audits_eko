@@ -42,6 +42,7 @@
             $sql = "SELECT * from audits2018_audits  WHERE id = '".$_GET['id_audit']."'";
             $result=mysqli_query($db,$sql);
             $row = mysqli_fetch_array($result);
+            $etat = $row['etat'];
             ?>
             <h4 class="my-0 font-weight-normal">A Noter <span style="float:right">
               <button type="button" class="button_add_note btn btn-info btn-sm"><i class="fas fa-sticky-note"></i> Ajouter/modifier une note</button>
@@ -141,7 +142,7 @@
 </div>
 
   <div class="modal" id="modale_add_tarif" role="dialog" tabindex="-1">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Ajouter un élement <span id="le_type_delement"></span></h5><button aria-label="Close" class="close" data-dismiss="modal" type=
@@ -159,7 +160,7 @@
     </div>
   </div>
   <?php
-  if( ($pts_nb_total) == 0 && ($row['etat'] == 'En cours Points')) {
+  if( ($pts_nb_total == 0) && ($etat == 'En cours Points')) {
     $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Plan Action' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
     $result   = mysqli_query($db, $sql);
 
@@ -198,7 +199,7 @@
   ?>
 
   <div class="modal" id="modale_add_note" role="dialog" tabindex="-1">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Ajouter une note </h5><button aria-label="Close" class="close" data-dismiss="modal" type=
@@ -217,7 +218,7 @@
   </div>
 
   <div class="modal" id="modale_edit_tarif" role="dialog" tabindex="-1">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Editer un élement</h5><button aria-label="Close" class="close" data-dismiss="modal" type=

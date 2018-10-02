@@ -34,7 +34,7 @@
   $sql = "SELECT * from audits2018_audits  WHERE id = '".$_GET['id_audit']."'";
   $result=mysqli_query($db,$sql);
   $row = mysqli_fetch_array($result);
-
+  $etat = $row['etat'];
   ?>
   <!--<div class="row" style="margin:30px">
     <div class="col" >
@@ -795,9 +795,10 @@
   </div>
   <!-- // FIN MODALE AJOUT AUDIT -->
   <?php
-  if( ($numero_de_carte) == 1 && ($row['etat'] == 'Initialisé')) {
+  if( ($numero_de_carte == 1 ) && ($etat == 'Initialisé') ) {
     $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Inventaire' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
     $result   = mysqli_query($db, $sql);
+    echo '<META http-equiv="refresh" content="1; URL=step1.php?id_audit='.$_GET['id_audit'].'">';
   }
   ?>
   <!-- Fin des Modales -->
