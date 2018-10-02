@@ -20,4 +20,3 @@ if($nb == 0) {
   echo $sql2a;
   $result2a   = mysqli_query($db, $sql2a);
 }
-?>

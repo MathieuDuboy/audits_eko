@@ -11,19 +11,29 @@ if($type == 'fort') {
 $commentaires = addslashes($_GET['commentaires']);
 
 
-$sql      = "INSERT INTO `audits2018_affectation_pts_forts_faibles` (`id`, `id_audit`, `id_pts_forts_faibles`,  `type`, `commentaires`, `ordre`)
-VALUES (NULL, '".$id_audit."', '".$id_pt."', '".$type."', '".$commentaires."', '');";
-echo $sql;
-$result   = mysqli_query($db, $sql);
+
 
 $sql2 = "SELECT * FROM `audits2018_pts_forts_faibles` WHERE `nom` = '".$nom_pt."' ";
 echo $sql2;
 $result2   = mysqli_query($db, $sql2);
 $nb = mysqli_num_rows($result2);
+
 if($nb == 0) {
   $sql2a      = "INSERT INTO `audits2018_pts_forts_faibles` (`id`, `nom`, `type`) VALUES (NULL, '".$nom_pt."', '".$type."');";
   echo $sql2a;
   $result2a   = mysqli_query($db, $sql2a);
+  $last_id = mysqli_insert_id($db);
+  echo $last_id;
+  $sql      = "INSERT INTO `audits2018_affectation_pts_forts_faibles` (`id`, `id_audit`, `id_pts_forts_faibles`,  `type`, `commentaires`, `ordre`)
+  VALUES (NULL, '".$id_audit."', '".$last_id."', '".$type."', '".$commentaires."', '');";
+  echo $sql;
+  $result   = mysqli_query($db, $sql);
+
+}else {
+  $sql      = "INSERT INTO `audits2018_affectation_pts_forts_faibles` (`id`, `id_audit`, `id_pts_forts_faibles`,  `type`, `commentaires`, `ordre`)
+  VALUES (NULL, '".$id_audit."', '".$id_pt."', '".$type."', '".$commentaires."', '');";
+  echo $sql;
+  $result   = mysqli_query($db, $sql);
 }
 
 ?>
