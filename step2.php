@@ -67,9 +67,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Postes de travail';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -117,9 +162,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Connexions Internet';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -169,9 +259,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Téléphonie Fixe';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -219,9 +354,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Téléphonie Mobile';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -271,9 +451,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Réseau';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -321,9 +546,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Messagerie';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -373,9 +643,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Partage documentaire';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -423,9 +738,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Logiciel';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -475,9 +835,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Antivirus';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -525,9 +930,54 @@
               $tab_specifications_deja_affecte = [];
               while($row3 = mysqli_fetch_array($result3))   {
                 $tab_specifications_deja_affecte[] = $row3['id_specification'];
+                $type = 'Sauvegarde';
+                switch ($type) {
+                    case "Sauvegarde":
+                    $tab_val = ["SSupport", "SLog", "SMon", "SAuto", "SPer"];
+                    $tab_nom = ["Support", "Logiciel", "Monitorée ?", "Automatisée ?", "Periodicité"];
+                    break;
+                    case "Antivirus":
+                    $tab_val = ["AType", "ANBL", "ATarif", "AMan"];
+                    $tab_nom = ["Type", "Nb Licenses", "Tarif", "Managé ?"];
+                    break;
+                    case "Logiciel":
+                    $tab_val = ["LE", "LM", "LNBC", "LTH", "LSO"];
+                    $tab_nom = ["Editeur", "Maintenance ?", "Nb Clients", "Type hébergement", "SAAS / OP"];
+                    break;
+                    case "Partage documentaire":
+                    $tab_val = ["PDType", "PDFC", "PDC", "PDU", "PDGD"];
+                    $tab_nom = ["Type", "Fournisseur", "Capacité", "Utilisé", "Gestion droits"];
+                    break;
+                    case "Messagerie":
+                    $tab_val = ["MF", "MMA", "MC", "MU", "MA"];
+                    $tab_nom = ["Fournisseur", "Mode accès", "Capacité", "Utilisé", "Archive"];
+                    break;
+                    case "Réseau":
+                    $tab_val = ["RMarque", "RType", "RDebit", "RNB", "RNBCo"];
+                    $tab_nom = ["Marque", "Type", "Débits Supportés", "Nb", "Nb connexions"];
+                    break;
+                    case "Téléphonie Mobile":
+                    $tab_val = ["TMOpe", "TMTerminal", "TMFF", "TMTarif"];
+                    $tab_nom = ["Opérateur", "Mobiles", "Forfait", "Tarif"];
+                    break;
+                    case "Téléphonie Fixe":
+                    $tab_val = ["TFOpe", "TFTech", "TFNB", "TFFF", "TFTarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Nb Postes", "Forfait", "Tarif"];
+                    break;
+                    case "Connexions Internet":
+                    $tab_val = ["CIOpe", "CITech", "CIDebit", "CIFF", "CITarif"];
+                    $tab_nom = ["Opérateur", "Techno", "Débit", "Forfait", "Tarif"];
+                    break;
+                    case "Postes de travail":
+                    $tab_val = ["PTBrand", "PTFactor", "PTProc", "PTRAM", "PTDDType", "PTDDCapa", "PTDDOccup", "PTScreen"];
+                    $tab_nom = ["Marque", "Format", "Processeur", "RAM", "Type DD", "Capacité DD", "Tx Occup DD", "Ecran"];
+                    break;
 
+                }
+                $key = array_search($row3['nom'], $tab_val);
+                $nom = $tab_nom[$key];
                 ?>
-                <li><b><?php echo $row3['nom']; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
+                <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> </span></li>
                 <?php
               }
               $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -561,16 +1011,18 @@
           </div>
           <div class="card-body">
             <?php
+            $pts_nb_total = 0;
             $a = 0;
             $sql3a = "SELECT * FROM `audits2018_pts_forts_faibles` INNER JOIN  audits2018_affectation_pts_forts_faibles ON  audits2018_pts_forts_faibles.id = audits2018_affectation_pts_forts_faibles.id_pts_forts_faibles WHERE `id_audit` =  '".$_GET['id_audit']."' AND audits2018_affectation_pts_forts_faibles.type = 'fort' ";
             $result3a=mysqli_query($db,$sql3a);
             while($row3a = mysqli_fetch_array($result3a))    {
-              ?><h4 class=" card-title pricing-card-title"><small class="text-muted"><i class="fas fa-thumbs-up"></i> <?php echo $row3a['nom']; ?><span style="float:right"><i data-id="<?php echo $row3a['id']; ?>" class="edit_pt fas fa-edit" style="cursor: pointer;"></i> <i data-id="<?php echo $row3a['id']; ?>" class="remove_pt fas fa-trash" style="color: red; cursor: pointer;"></i></span></small></h1>
+              ?><h4 class=" card-title pricing-card-title"><b><span style="color:green"><i class="fas fa-thumbs-up"></i> <?php echo $row3a['nom']; ?><span style="float:right"><i data-id="<?php echo $row3a['id']; ?>" class="edit_pt fas fa-edit" style="cursor: pointer;"></i> <i data-id="<?php echo $row3a['id']; ?>" class="remove_pt fas fa-trash" style="color: red; cursor: pointer;"></i></span></span></b></h4>
                 <ul class="" id="pt_fort_<?php echo $a; ?>" style="list-style: none;">
                   <li><?php echo $row3a['commentaires']; ?></li>
                 </ul>
                 <?php
             $a++;
+            $pts_nb_total++;
             }
             ?>
           </div>
@@ -587,12 +1039,13 @@
             $sql3a = "SELECT * FROM `audits2018_pts_forts_faibles` INNER JOIN  audits2018_affectation_pts_forts_faibles ON  audits2018_pts_forts_faibles.id = audits2018_affectation_pts_forts_faibles.id_pts_forts_faibles WHERE `id_audit` =  '".$_GET['id_audit']."' AND audits2018_affectation_pts_forts_faibles.type = 'faible' ";
             $result3a=mysqli_query($db,$sql3a);
             while($row3a = mysqli_fetch_array($result3a))    {
-              ?><h4 class=" card-title pricing-card-title"><small class="text-muted"><i class="fas fa-thumbs-up"></i> <?php echo $row3a['nom']; ?><span style="float:right"><i data-id="<?php echo $row3a['id']; ?>" class="edit_pt fas fa-edit" style="cursor: pointer;"></i> <i data-id="<?php echo $row3a['id']; ?>" class="remove_pt fas fa-trash" style="color: red; cursor: pointer;"></i></span></small></h1>
+              ?><h4 class=" card-title pricing-card-title"><b><span style="color:red"><i class="fas fa-thumbs-down"></i> <?php echo $row3a['nom']; ?><span style="float:right"><i data-id="<?php echo $row3a['id']; ?>" class="edit_pt fas fa-edit" style="cursor: pointer;"></i> <i data-id="<?php echo $row3a['id']; ?>" class="remove_pt fas fa-trash" style="color: red; cursor: pointer;"></i></span></span></b></h4>
                 <ul class="" id="pt_fort_<?php echo $a; ?>" style="list-style: none;">
                   <li><?php echo $row3a['commentaires']; ?></li>
                 </ul>
                 <?php
             $a++;
+            $pts_nb_total++;
             }
             ?>
           </div>
@@ -606,9 +1059,16 @@
     </div>
   </div>
 
+  <?php
+  if( ($pts_nb_total) == 1 && ($row['etat'] == 'En cours Inventaire')) {
+    $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Points' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
+    $result   = mysqli_query($db, $sql);
+  }
+  ?>
+
   <!-- // MODALE AJOUT ELEMENT -->
   <div class="modal" id="modale_add_pt" role="dialog" tabindex="-1">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Affecter un Point Fort/Faible</h5><button aria-label="Close" class="close" data-dismiss="modal" type=
@@ -627,7 +1087,7 @@
   </div>
 
   <div class="modal" id="modale_edit_pt" role="dialog" tabindex="-1">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Affecter un Point Fort/Faible</h5><button aria-label="Close" class="close" data-dismiss="modal" type=

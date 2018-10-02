@@ -82,7 +82,8 @@
         </div>
         <div class="form-group">
           <label for="nom">Avant-Propos :</label>
-          <textarea class="form-control" id="commentaires" name="commentaires" rows="5"><?php echo $row['commentaires']; ?></textarea>
+          <?php $texte_de_base = 'Ceci est le texte de base à modifier par Mathieu. Il sera toujours le même lors d\'un ajout d\'audit. Le texte qui suivra sera alors modifiable à souhait.'; ?>
+          <textarea class="form-control" id="commentaires" name="commentaires" rows="5"><?php if($row['commentaires'] == '') echo $texte_de_base; else echo $row['commentaires']; ?></textarea>
         </div>
       </div>
     </form>
@@ -135,7 +136,7 @@
                 <input type="hidden" name="retour_url" value="<?php $url = $_SERVER['REQUEST_URI']; echo $url; ?>" />
                 <input name="userfile[]" class="form-control-file" multiple type="file" />
               </div>
-              <span style="float:right"><button type="submit" id="telecharger" class="btn btn-outline-primary btn-sm"><i class="fas fa-download"></i> Télécharger</button> <button type="button" id="goto_step2" class="btn btn-info btn-sm"><i class="fas fa-play"></i> Go to Step 2</button></span>
+              <span style="float:right"><button type="submit" id="telecharger" class="btn btn-outline-primary btn-sm"><i class="fas fa-download"></i> Télécharger</button> <button type="button" id="goto_index" class="btn btn-outline-primary btn-sm"><i class="fas fa-undo"></i> Retour Accueil</button> <button type="button" id="goto_step2" class="btn btn-info btn-sm"><i class="fas fa-play"></i> Go to Step 2</button></span>
           </div>
         </div>
       </div>
@@ -659,7 +660,7 @@
             $key = array_search($row3['nom'], $tab_val);
             $nom = $tab_nom[$key];
             ?>
-            <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> <i data-element="<?php echo $numero_de_carte; ?>" data-id="<?php echo $row3['vrai_id']; ?>" class="edit_spe fas fa-edit"></i> <i data-id="<?php echo $row3['vrai_id']; ?>" data-element="<?php echo $numero_de_carte; ?>" class="remove_spe fas fa-trash" style="color:red"></i></span></li>
+            <li><b><?php echo $nom; ?></b> <span style="float:right"><?php if($row3['valeur'] != '') echo $row3['valeur']; else echo 'N.C.' ?> <i data-element="<?php echo $numero_de_carte; ?>" data-type="Sauvegarde" data-id="<?php echo $row3['vrai_id']; ?>" class="edit_spe fas fa-edit"></i> <i data-id="<?php echo $row3['vrai_id']; ?>" data-element="<?php echo $numero_de_carte; ?>" class="remove_spe fas fa-trash" style="color:red"></i></span></li>
             <?php
           }
           $sql3a = "SELECT * FROM `liste_specifications` WHERE `id_element` =  '".$row2['id']."' ";
@@ -793,7 +794,12 @@
     </div>
   </div>
   <!-- // FIN MODALE AJOUT AUDIT -->
-
+  <?php
+  if( ($numero_de_carte) == 1 && ($row['etat'] == 'Initialisé')) {
+    $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Inventaire' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
+    $result   = mysqli_query($db, $sql);
+  }
+  ?>
   <!-- Fin des Modales -->
   <script src="https://unpkg.com/popper.js@1.14.3/dist/umd/popper.min.js">
    </script>
@@ -825,7 +831,7 @@
       var type = $(this).data("type");
       var id_element_affectation = $(this).data("idelementaffectation");
       var id_audit = $("#id_audit_audit").val();
-      $('.body_affectation_element_update').load('php/template/step1/update_affecter_element.php?id_audit='+id_audit+'&id_element='+id_element+'&id_element_affectation='+id_element_affectation,function(contenu){
+      $('.body_affectation_element_update').load(encodeURI('php/template/step1/update_affecter_element.php?id_audit='+id_audit+'&id_element='+id_element+'&id_element_affectation='+id_element_affectation+'&type='+type),function(contenu){
         $('#modale_affectation_element_update').modal({show:true});
         $('.body_affectation_element_update').html(contenu);
       });
@@ -1059,6 +1065,10 @@
         $('#more').hide(1000);
         $('#hide_show').val("hide");
       }
+    });
+    $("#goto_index").click(function() {
+      var id = $("#id_audit_audit").val();
+      window.location = "index.php";
     });
     $('.remove_fichier').click(function() {
       swal({

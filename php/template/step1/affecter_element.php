@@ -32,7 +32,7 @@
   <div class="form-row" style="margin-bottom:10px">
     <div class="col">
       <div class="form-group">
-        <label for="nom">Tag à affecter à l'élément :</label>
+        <label for="nom">Identification de l’élément :</label>
         <input class="form-control" autocomplete="off" id="tag" name="tag" placeholder="Exemple : de l'accueil" type="text">
       </div>
     </div>

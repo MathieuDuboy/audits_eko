@@ -65,6 +65,7 @@
           </div>
           <div class="card-body">
             <?php
+            $pts_nb_total = 0;
             $a = 0;
             $sql3a = "SELECT * FROM `audits2018_affectation_tarif` WHERE `id_audit` =  '".$_GET['id_audit']."' AND type = 'OBLIGATOIRE' ";
             $result3a=mysqli_query($db,$sql3a);
@@ -98,6 +99,7 @@
                 </ul>
                 <?php
             $a++;
+            $pts_nb_total++;
             }
             ?>
           </div>
@@ -122,6 +124,7 @@
                 </ul>
                 <?php
             $a++;
+            $pts_nb_total++;
             }
             ?>
           </div>
@@ -155,6 +158,44 @@
       </div>
     </div>
   </div>
+  <?php
+  if( ($pts_nb_total) == 0 && ($row['etat'] == 'En cours Points')) {
+    $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Plan Action' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
+    $result   = mysqli_query($db, $sql);
+
+    // OBLIGATOIRE
+    $tab_obligatoire[0]["titre"] = "Titre 1 de base";
+    $tab_obligatoire[0]["desc"] = "Description 1 à modifier par Mathieu";
+    $tab_obligatoire[0]["tarif"] = "10";
+    $tab_obligatoire[1]["titre"] = "Titre 2";
+    $tab_obligatoire[1]["desc"] = "DEscription 2";
+    $tab_obligatoire[1]["tarif"] = "20";
+    foreach($tab_obligatoire as $value) {
+      $sql      = "INSERT INTO `audits2018_affectation_tarif` (`id`, `id_audit`, `nom`, `tarif`, `type`, `commentaires`)
+      VALUES (NULL, '".$_GET['id_audit']."', '".$value["titre"]."', '".$value["tarif"]."', 'OBLIGATOIRE', '".$value["desc"]."');";
+      $result   = mysqli_query($db, $sql);
+    }
+    // RECOMMANDE
+    $tab_recommande[0]["titre"] = "Titre 1";
+    $tab_recommande[0]["desc"] = "Description 1 à modifier par Mathieu";
+    $tab_recommande[0]["tarif"] = "10";
+    foreach($tab_recommande as $value) {
+      $sql      = "INSERT INTO `audits2018_affectation_tarif` (`id`, `id_audit`, `nom`, `tarif`, `type`, `commentaires`)
+      VALUES (NULL, '".$_GET['id_audit']."', '".$value["titre"]."', '".$value["tarif"]."', 'RECOMMANDE', '".$value["desc"]."');";
+      $result   = mysqli_query($db, $sql);
+    }
+    // CONFORT
+    $tab_confort[0]["titre"] = "Titre 1";
+    $tab_confort[0]["desc"] = "Description 1 à modifier par Mathieu";
+    $tab_confort[0]["tarif"] = "10";
+    foreach($tab_confort as $value) {
+      $sql      = "INSERT INTO `audits2018_affectation_tarif` (`id`, `id_audit`, `nom`, `tarif`, `type`, `commentaires`)
+      VALUES (NULL, '".$_GET['id_audit']."', '".$value["titre"]."', '".$value["tarif"]."', 'CONFORT', '".$value["desc"]."');";
+      $result   = mysqli_query($db, $sql);
+    }
+    echo '<META http-equiv="refresh" content="1; URL=step3.php?id_audit='.$_GET['id_audit'].'">';
+  }
+  ?>
 
   <div class="modal" id="modale_add_note" role="dialog" tabindex="-1">
     <div class="modal-dialog " role="document">
