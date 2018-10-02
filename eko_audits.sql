@@ -3,18 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  mar. 02 oct. 2018 à 13:37
+-- Généré le :  mar. 02 oct. 2018 à 17:47
 -- Version du serveur :  5.6.35
 -- Version de PHP :  5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `eko_audits`
@@ -152,6 +146,18 @@ CREATE TABLE `audits2018_pts_forts_faibles` (
   `type` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `audits2018_recommandations`
+--
+
+CREATE TABLE `audits2018_recommandations` (
+  `id` int(12) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `type` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Index pour les tables déchargées
 --
@@ -211,6 +217,12 @@ ALTER TABLE `audits2018_pts_forts_faibles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `audits2018_recommandations`
+--
+ALTER TABLE `audits2018_recommandations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -223,7 +235,7 @@ ALTER TABLE `audits2018_affectation_element`
 -- AUTO_INCREMENT pour la table `audits2018_affectation_pts_forts_faibles`
 --
 ALTER TABLE `audits2018_affectation_pts_forts_faibles`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `audits2018_affectation_specification`
 --
@@ -233,7 +245,7 @@ ALTER TABLE `audits2018_affectation_specification`
 -- AUTO_INCREMENT pour la table `audits2018_affectation_tarif`
 --
 ALTER TABLE `audits2018_affectation_tarif`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT pour la table `audits2018_audits`
 --
@@ -258,7 +270,9 @@ ALTER TABLE `audits2018_liste_specifications`
 -- AUTO_INCREMENT pour la table `audits2018_pts_forts_faibles`
 --
 ALTER TABLE `audits2018_pts_forts_faibles`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `audits2018_recommandations`
+--
+ALTER TABLE `audits2018_recommandations`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
