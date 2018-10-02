@@ -2,16 +2,17 @@
   <input type="hidden" name="type" id="type" value="<?php echo $_GET['type']; ?>"/>
   <input type="hidden" name="id_audit" id="id_audit" value="<?php echo $_GET['id_audit']; ?>"/>
   <input type="hidden" name="id_pt" id="id_pt" value=""/>
+  <input type="hidden" name="nom_pt" id="nom_pt" value=""/>
 
   <div class="row">
     <div class="col-6">
       <div class="form-group" id="div_fort">
         <label for="pt_fort"><i class="fas fa-edit"></i> Ajouter un Point</label>
-        <input type="text" class="form-control" name="pt_fort_input" id="pt_fort_input" value=""/>
+        <input type="text" class="vrai_input form-control" name="pt_fort_input" id="pt_fort_input" value=""/>
       </div>
       <div class="form-group" id="div_faible">
         <label for="pt_fort"><i class="fas fa-edit"></i> Ajouter un Point</label>
-        <input type="text" class="form-control" name="pt_faible_input" id="pt_faible_input" value=""/>
+        <input type="text" class="vrai_input form-control" name="pt_faible_input" id="pt_faible_input" value=""/>
       </div>
     </div>
     <div class="col-6" style="border-left:solid 1px">
@@ -59,7 +60,9 @@ $(function()  {
       },
       onChooseEvent: function(item) {
         var id_pt = $("#pt_fort_input").getSelectedItemData().id;
+        var nom_pt = $("#pt_fort_input").getSelectedItemData().visuel;
         $("#id_pt").val(id_pt);
+        $("#nom_pt").val(nom_pt);
       }
     },
     requestDelay: 400,
@@ -94,7 +97,9 @@ $(function()  {
       },
       onChooseEvent: function(item) {
           var id_pt = $("#pt_faible_input").getSelectedItemData().id;
+          var nom_pt = $("#pt_faible_input").getSelectedItemData().visuel;
           $("#id_pt").val(id_pt);
+          $("#nom_pt").val(nom_pt);
       }
     },
     requestDelay: 400,

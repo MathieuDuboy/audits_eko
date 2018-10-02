@@ -164,7 +164,7 @@
     $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Plan Action' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
     $result   = mysqli_query($db, $sql);
 
-    // OBLIGATOIRE
+  /*  // OBLIGATOIRE
     $tab_obligatoire[0]["titre"] = "Titre 1 de base";
     $tab_obligatoire[0]["desc"] = "Description 1 à modifier par Mathieu";
     $tab_obligatoire[0]["tarif"] = "10";
@@ -194,7 +194,7 @@
       VALUES (NULL, '".$_GET['id_audit']."', '".$value["titre"]."', '".$value["tarif"]."', 'CONFORT', '".$value["desc"]."');";
       $result   = mysqli_query($db, $sql);
     }
-    echo '<META http-equiv="refresh" content="1; URL=step3.php?id_audit='.$_GET['id_audit'].'">';
+    echo '<META http-equiv="refresh" content="1; URL=step3.php?id_audit='.$_GET['id_audit'].'">';*/
   }
   ?>
 

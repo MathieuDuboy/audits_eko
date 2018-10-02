@@ -1,6 +1,7 @@
 <form id="mon_tarif" name="mon_tarif">
   <input type="hidden" name="type" id="type" value="<?php echo $_GET['type']; ?>"/>
   <input type="hidden" name="id_audit" id="id_audit" value="<?php echo $_GET['id_audit']; ?>"/>
+  <input type="hidden" name="id_reco" id="id_reco" value=""/>
 
   <div class="row">
     <div class="col-6">
@@ -21,8 +22,126 @@
     </div>
   </div>
 </form>
-<script>
-$(function()  {
+<?php
+if($_GET['type'] == 'OBLIGATOIRE') {
+  ?><script>
+  $(function()  {
+    var options_recommandation = {
+      url: function(phrase) {
+        return "php/recherche_reco.php?type=OBLIGATOIRE";
+      },
+      getValue: function(element) {
+        console.log(element);
+        return element.visuel;
+      },
+      ajaxSettings: {
+        dataType: "json",
+        method: "POST",
+        data: {
+          dataType: "json"
+        }
+      },
+      preparePostData: function(data) {
+        console.log($("#recommandation").val());
+        data.phrase = $("#recommandation").val();
+        return data;
+      },
+      list: {
+        maxNumberOfElements: 6,
+        match: {
+          enabled: true
+        },
+        onChooseEvent: function(item) {
+          var id_reco = $("#recommandation").getSelectedItemData().id;
+          $("#id_reco").val(id_reco);
+        }
+      },
+      requestDelay: 400,
+      adjustWidth: false
+    };
+    $("#recommandation").easyAutocomplete(options_recommandation);
 
-});
-</script>
+  });
+  </script><?php
+}else if($_GET['type'] == 'RECOMMANDE') {
+  ?><script>
+  $(function()  {
+    var options_recommandation = {
+      url: function(phrase) {
+        return "php/recherche_reco.php?type=RECOMMANDE";
+      },
+      getValue: function(element) {
+        console.log(element);
+        return element.visuel;
+      },
+      ajaxSettings: {
+        dataType: "json",
+        method: "POST",
+        data: {
+          dataType: "json"
+        }
+      },
+      preparePostData: function(data) {
+        console.log($("#recommandation").val());
+        data.phrase = $("#recommandation").val();
+        return data;
+      },
+      list: {
+        maxNumberOfElements: 6,
+        match: {
+          enabled: true
+        },
+        onChooseEvent: function(item) {
+          var id_reco = $("#recommandation").getSelectedItemData().id;
+          $("#id_reco").val(id_reco);
+        }
+      },
+      requestDelay: 400,
+      adjustWidth: false
+    };
+    $("#recommandation").easyAutocomplete(options_recommandation);
+
+  });
+  </script><?php
+}else if($_GET['type'] == 'CONFORT') {
+  ?><script>
+  $(function()  {
+    var options_recommandation = {
+      url: function(phrase) {
+        return "php/recherche_reco.php?type=CONFORT";
+      },
+      getValue: function(element) {
+        console.log(element);
+        return element.visuel;
+      },
+      ajaxSettings: {
+        dataType: "json",
+        method: "POST",
+        data: {
+          dataType: "json"
+        }
+      },
+      preparePostData: function(data) {
+        console.log($("#recommandation").val());
+        data.phrase = $("#recommandation").val();
+        return data;
+      },
+      list: {
+        maxNumberOfElements: 6,
+        match: {
+          enabled: true
+        },
+        onChooseEvent: function(item) {
+          var id_reco = $("#recommandation").getSelectedItemData().id;
+          $("#id_reco").val(id_reco);
+        }
+      },
+      requestDelay: 400,
+      adjustWidth: false
+    };
+    $("#recommandation").easyAutocomplete(options_recommandation);
+
+  });
+  </script><?php
+}
+?>
