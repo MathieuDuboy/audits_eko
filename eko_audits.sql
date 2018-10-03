@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  mer. 03 oct. 2018 à 21:30
+-- Généré le :  mer. 03 oct. 2018 à 21:55
 -- Version du serveur :  5.6.35
 -- Version de PHP :  5.6.30
 
@@ -157,6 +157,7 @@ CREATE TABLE `audits2018_pts_forts_faibles` (
 CREATE TABLE `audits2018_recommandations` (
   `id` int(12) NOT NULL,
   `nom` varchar(255) NOT NULL,
+  `commentaire_de_base` varchar(555) NOT NULL,
   `type` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
