@@ -21,6 +21,7 @@ $a = 0;
   while($row = $result->fetch_array()) {
     extract($row);
     $tab[$a]["visuel"] = $nom;
+		$tab[$a]["com"] = $commentaire_de_base;
 		$tab[$a]["id"] = $id;
     $a++;
 
@@ -36,6 +37,7 @@ $a = 0;
   while($row = $result->fetch_array()) {
     extract($row);
     $tab[$a]["visuel"] = $nom;
+		$tab[$a]["com"] = $commentaire_de_base;
 		$tab[$a]["id"] = $id;
 
     $a++;

@@ -60,9 +60,11 @@ $(function()  {
       },
       onChooseEvent: function(item) {
         var id_pt = $("#pt_fort_input").getSelectedItemData().id;
+        var com_pt = $("#pt_fort_input").getSelectedItemData().com;
         var nom_pt = $("#pt_fort_input").getSelectedItemData().visuel;
         $("#id_pt").val(id_pt);
         $("#nom_pt").val(nom_pt);
+        $("#commentaires").val(com_pt);
       }
     },
     requestDelay: 400,
@@ -97,9 +99,13 @@ $(function()  {
       },
       onChooseEvent: function(item) {
           var id_pt = $("#pt_faible_input").getSelectedItemData().id;
+          var com_pt = $("#pt_faible_input").getSelectedItemData().com;
+
           var nom_pt = $("#pt_faible_input").getSelectedItemData().visuel;
           $("#id_pt").val(id_pt);
           $("#nom_pt").val(nom_pt);
+          $("#commentaires").val(com_pt);
+
       }
     },
     requestDelay: 400,

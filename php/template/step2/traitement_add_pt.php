@@ -19,7 +19,7 @@ $result2   = mysqli_query($db, $sql2);
 $nb = mysqli_num_rows($result2);
 
 if($nb == 0) {
-  $sql2a      = "INSERT INTO `audits2018_pts_forts_faibles` (`id`, `nom`, `type`) VALUES (NULL, '".$nom_pt."', '".$type."');";
+  $sql2a      = "INSERT INTO `audits2018_pts_forts_faibles` (`id`, `nom`, `commentaire_de_base`,  `type`) VALUES (NULL, '".$nom_pt."', '".$commentaires."',  '".$type."');";
   echo $sql2a;
   $result2a   = mysqli_query($db, $sql2a);
   $last_id = mysqli_insert_id($db);

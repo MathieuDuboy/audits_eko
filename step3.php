@@ -138,7 +138,13 @@
   $result3a=mysqli_query($db,$sql3a);
   $row3a = mysqli_fetch_array($result3a);
   ?>
-  <div class="row" style="float:right;margin:10px">    <span style="float:right;margin:10px"><button type="button" data-already="<?php if($row3a['url_pdf'] != '') echo "true"; ?>" id="generer_pdf" class="btn btn-outline-primary btn-sm"><i class="fas fa-file-pdf"></i> Générer PDF</button> <button type="button" id="goto_step1" class="btn btn-info btn-sm"><i class="fas fa-backward"></i> Go to Step 1</button> <button type="button" id="goto_step2" class="btn btn-info btn-sm"><i class="fas fa-backward"></i> Go to Step 2</button></span>
+  <div class="row" style="float:right;margin:10px">    <span style="float:right;margin:10px"><button type="button" data-already="<?php if($row3a['url_pdf'] != '') echo "true"; ?>" id="generer_pdf" class="btn btn-outline-primary btn-sm" ><i class="fas fa-file-pdf"></i> Générer PDF</button>
+    <?
+    $il_y_a_15min = time()-(15*60);
+    ?>
+    <button type="button" id="send_email" data-id="<?php echo $_GET['id_audit']; ?>" <?php
+     if (($row3a['url_pdf'] == '') || ($row3a['time_generation_pdf'] <= $il_y_a_15min)) echo "disabled";  ?> class="btn btn-primary btn-sm"><i class="fas fa-envelope"></i> Envoyer Email</button>
+     <button type="button" id="goto_step1" class="btn btn-info btn-sm"><i class="fas fa-backward"></i> Go to Step 1</button> <button type="button" id="goto_step2" class="btn btn-info btn-sm"><i class="fas fa-backward"></i> Go to Step 2</button></span>
 </div>
 
   <div class="modal" id="modale_add_tarif" role="dialog" tabindex="-1">
@@ -237,6 +243,26 @@
   </div>
 
 
+  <div class="modal" id="modale_edit_mail" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editer le Mail</h5><button aria-label="Close" class="close" data-dismiss="modal" type=
+          "button"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body" id="body_edit_mail">
+
+        </div>
+        <div class="modal-footer">
+          <button class="refresh btn btn-info" type="button">Recommencer</button>
+          <button class="btn btn-primary" data-dismiss="modal" id="valider_edit_mail" type="submit">Envoyer Email</button>
+          <button class="btn btn-secondary" data-dismiss="modal" type="button">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <script src="https://unpkg.com/popper.js@1.14.3/dist/umd/popper.min.js">
    </script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js">
@@ -250,6 +276,7 @@
   </script>
   <script >
   $(function()  {
+
     $('.fa-plus-square').css( 'cursor', 'pointer' );
     $('.fa-edit').css( 'cursor', 'pointer' );
     $('.fa-trash').css( 'cursor', 'pointer' );
@@ -342,6 +369,26 @@
       });
     });
 
+    $("#valider_edit_mail").click(function()  {
+      var serial = $("#mon_mail_edit").serialize();
+      console.log(serial);
+      $.ajax({
+        url: "php/template/step3/traitement_edit_mail.php",
+        type: 'GET',
+        data: serial,
+        success: function(data) {
+          console.log(data);
+          //window.location = "index.php";
+          //window.location.reload();
+        },
+        error : function(err) {
+          console.log(err);
+          //window.location = "index.php";
+          //window.location.reload();
+        }
+      });
+    });
+
   })
 
   $("#goto_step1").click(function() {
@@ -356,6 +403,14 @@
     var id = $("#id_audit_audit").val();
     window.location = "index.php";
   });
+  $("#send_email").click(function() {
+    var id = $(this).data("id");
+    $('#body_edit_mail').load('php/template/step3/edit_mail.php?id='+id,function(contenu){
+      $('#modale_edit_mail').modal({show:true});
+      $('#body_edit_mail').html(contenu);
+    });
+  });
+
   $("#generer_pdf").click(function() {
     var already_exist = $(this).data("already");
     if(already_exist == true) {
