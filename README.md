@@ -12,5 +12,4 @@ Il suffit de taper la commande depuis le Terminal (dans le dossier /audits par e
 4. Modifier les droits du dossier /uploads (CHMOD en 755 minimum)
 5. Lorsque tu souhaites lancer en PROD : Modifier les clés de Test FormAPI dans generer.php :<br />
 Disponible ici : https://github.com/MathieuDuboy/audits_eko/blob/master/generer.php
-6. Pour modifier le texte fixe de l'intro : RDV ligne 85 de step1.php : https://github.com/MathieuDuboy/audits_eko/blob/master/step1.php
-7. Pour modifier les informations de base fixe de l'étape 3 : RDV ligne 166 : https://github.com/MathieuDuboy/audits_eko/blob/0cdc2d79ab9042ada4078b8347f529f5212ce8a4/step3.php#L166
+6. Pour modifier le texte fixe de l'intro : RDV ligne 798 de step1.php : https://github.com/MathieuDuboy/audits_eko/blob/9df32d04a594c04d1b50b30e48cd6ff333fadba4/step1.php#L798
