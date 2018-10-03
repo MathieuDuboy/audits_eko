@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  mar. 02 oct. 2018 à 17:47
+-- Généré le :  mer. 03 oct. 2018 à 21:30
 -- Version du serveur :  5.6.35
 -- Version de PHP :  5.6.30
 
@@ -90,7 +90,8 @@ CREATE TABLE `audits2018_audits` (
   `id_manager` varchar(12) NOT NULL,
   `nom_manager` varchar(255) NOT NULL,
   `etat` varchar(255) NOT NULL,
-  `url_pdf` varchar(1000) NOT NULL,
+  `url_pdf` varchar(5000) NOT NULL,
+  `time_generation_pdf` varchar(255) NOT NULL,
   `date_ajout` varchar(255) NOT NULL,
   `commentaires` varchar(5000) NOT NULL,
   `note` varchar(5000) NOT NULL
@@ -143,6 +144,7 @@ CREATE TABLE `audits2018_liste_specifications` (
 CREATE TABLE `audits2018_pts_forts_faibles` (
   `id` int(12) NOT NULL,
   `nom` varchar(255) NOT NULL,
+  `commentaire_de_base` varchar(255) NOT NULL,
   `type` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -235,7 +237,7 @@ ALTER TABLE `audits2018_affectation_element`
 -- AUTO_INCREMENT pour la table `audits2018_affectation_pts_forts_faibles`
 --
 ALTER TABLE `audits2018_affectation_pts_forts_faibles`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT pour la table `audits2018_affectation_specification`
 --
@@ -245,7 +247,7 @@ ALTER TABLE `audits2018_affectation_specification`
 -- AUTO_INCREMENT pour la table `audits2018_affectation_tarif`
 --
 ALTER TABLE `audits2018_affectation_tarif`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT pour la table `audits2018_audits`
 --
@@ -270,9 +272,9 @@ ALTER TABLE `audits2018_liste_specifications`
 -- AUTO_INCREMENT pour la table `audits2018_pts_forts_faibles`
 --
 ALTER TABLE `audits2018_pts_forts_faibles`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT pour la table `audits2018_recommandations`
 --
 ALTER TABLE `audits2018_recommandations`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
