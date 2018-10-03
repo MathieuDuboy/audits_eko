@@ -82,8 +82,7 @@
         </div>
         <div class="form-group">
           <label for="nom">Avant-Propos :</label>
-          <?php $texte_de_base = 'Ceci est le texte de base à modifier par Mathieu. Il sera toujours le même lors d\'un ajout d\'audit. Le texte qui suivra sera alors modifiable à souhait.'; ?>
-          <textarea class="form-control" id="commentaires" name="commentaires" rows="5"><?php if($row['commentaires'] == '') echo $texte_de_base; else echo $row['commentaires']; ?></textarea>
+          <textarea class="form-control" id="commentaires" name="commentaires" rows="5"><?php echo $row['commentaires']; ?></textarea>
         </div>
       </div>
     </form>
@@ -796,7 +795,8 @@
   <!-- // FIN MODALE AJOUT AUDIT -->
   <?php
   if( ($numero_de_carte == 1 ) && ($etat == 'Initialisé') ) {
-    $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Inventaire' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
+    $texte_de_base = 'Ceci est le texte de base à modifier par Mathieu. Il sera toujours le même lors d\'un ajout d\'audit. Le texte qui suivra sera alors modifiable à souhait.';
+    $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Inventaire', `commentaires` = '".$texte_de_base."' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
     $result   = mysqli_query($db, $sql);
     echo '<META http-equiv="refresh" content="1; URL=step1.php?id_audit='.$_GET['id_audit'].'">';
   }
