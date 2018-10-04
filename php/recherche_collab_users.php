@@ -5,6 +5,7 @@ $type_de_recherche = $_GET['type'];
 $recherche = $_GET['recherche'];
 $entreprise = $_GET['entreprise'];
 $phrase = $_GET['phrase'];
+$collab_clientid = $_GET['collab_clientid'];
 
 //echo $client;
 
@@ -47,6 +48,25 @@ $a = 0;
     $tab[$a]["cid"] = '';
     $tab[$a]["email"] = $email;
     $tab[$a]["company"] = $company;
+    $a++;
+  }//loop ends here.
+}
+else if($type_de_recherche == 'viaID') {
+	$query = "SELECT * from collab WHERE collab_clientid = '".$collab_clientid."' ";
+  $result = $db->query($query) or die($db->error);
+  $content = '';
+  $count = 0;
+  $tab = array();
+  $a = 0;
+  while($row = $result->fetch_array()) {
+    extract($row);
+    $val = $collab_pname.' '.$collab_name.' / '.$collab_mail;
+    $tab[$a]["visuel"] = $collab_pname.' '.$collab_name.' / '.$collab_mail;
+    $tab[$a]["nom_prenom"] = $collab_pname.' '.$collab_name;
+    $tab[$a]["id"] = $collab_id;
+    $tab[$a]["cid"] = '';
+    $tab[$a]["email"] = $mail;
+    $tab[$a]["company"] = '';
     $a++;
   }//loop ends here.
 }

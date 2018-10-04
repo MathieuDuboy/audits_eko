@@ -795,8 +795,8 @@
   <!-- // FIN MODALE AJOUT AUDIT -->
   <?php
   if( ($numero_de_carte == 1 ) && ($etat == 'Initialisé') ) {
-    $texte_de_base = 'Ceci est le texte de base à modifier par Mathieu. Il sera toujours le même lors d\'un ajout d\'audit. Le texte qui suivra sera alors modifiable à souhait.';
-    $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Inventaire', `commentaires` = '".$texte_de_base."' WHERE `audits2018_audits`.`id` = '" . $_GET['id_audit'] . "' ";
+    $texte_de_base = "Ceci est le texte de base à modifier par Mathieu. Il sera toujours le même lors d'un ajout d'audit. Le texte qui suivra sera alors modifiable à souhait.";
+    $sql      = "UPDATE `audits2018_audits` SET `etat` = 'En cours Inventaire', `commentaires` = '".addslashes($texte_de_base)."' WHERE `audits2018_audits`.`id` = '" . $_GET["id_audit"] . "' ";
     $result   = mysqli_query($db, $sql);
     echo '<META http-equiv="refresh" content="1; URL=step1.php?id_audit='.$_GET['id_audit'].'">';
   }

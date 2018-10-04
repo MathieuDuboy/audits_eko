@@ -54,6 +54,8 @@ if($_GET['type'] == 'OBLIGATOIRE') {
         onChooseEvent: function(item) {
           var id_reco = $("#recommandation").getSelectedItemData().id;
           $("#id_reco").val(id_reco);
+          var com_reco = $("#recommandation").getSelectedItemData().com;
+          $("#commentaires").val(com_reco);
         }
       },
       requestDelay: 400,
@@ -94,6 +96,8 @@ if($_GET['type'] == 'OBLIGATOIRE') {
         onChooseEvent: function(item) {
           var id_reco = $("#recommandation").getSelectedItemData().id;
           $("#id_reco").val(id_reco);
+          var com_reco = $("#recommandation").getSelectedItemData().com;
+          $("#commentaires").val(com_reco);
         }
       },
       requestDelay: 400,
@@ -134,6 +138,8 @@ if($_GET['type'] == 'OBLIGATOIRE') {
         onChooseEvent: function(item) {
           var id_reco = $("#recommandation").getSelectedItemData().id;
           $("#id_reco").val(id_reco);
+          var com_reco = $("#recommandation").getSelectedItemData().com;
+          $("#commentaires").val(com_reco);
         }
       },
       requestDelay: 400,

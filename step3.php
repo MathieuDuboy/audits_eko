@@ -138,12 +138,10 @@
   $result3a=mysqli_query($db,$sql3a);
   $row3a = mysqli_fetch_array($result3a);
   ?>
-  <div class="row" style="float:right;margin:10px">    <span style="float:right;margin:10px"><button type="button" data-already="<?php if($row3a['url_pdf'] != '') echo "true"; ?>" id="generer_pdf" class="btn btn-outline-primary btn-sm" ><i class="fas fa-file-pdf"></i> Générer PDF</button>
-    <?
-    $il_y_a_15min = time()-(15*60);
-    ?>
-    <button type="button" id="send_email" data-id="<?php echo $_GET['id_audit']; ?>" <?php
-     if (($row3a['url_pdf'] == '') || ($row3a['time_generation_pdf'] <= $il_y_a_15min)) echo "disabled";  ?> class="btn btn-primary btn-sm"><i class="fas fa-envelope"></i> Envoyer Email</button>
+  <div class="row" style="float:right;margin:10px">    <span style="float:right;margin:10px">
+
+<button type="button" id="goto_index" class="btn btn-outline-primary btn-sm"><i class="fas fa-undo"></i> Retour Accueil</button>
+
      <button type="button" id="goto_step1" class="btn btn-info btn-sm"><i class="fas fa-backward"></i> Go to Step 1</button> <button type="button" id="goto_step2" class="btn btn-info btn-sm"><i class="fas fa-backward"></i> Go to Step 2</button></span>
 </div>
 
@@ -242,25 +240,6 @@
     </div>
   </div>
 
-
-  <div class="modal" id="modale_edit_mail" role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Editer le Mail</h5><button aria-label="Close" class="close" data-dismiss="modal" type=
-          "button"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body" id="body_edit_mail">
-
-        </div>
-        <div class="modal-footer">
-          <button class="refresh btn btn-info" type="button">Recommencer</button>
-          <button class="btn btn-primary" data-dismiss="modal" id="valider_edit_mail" type="submit">Envoyer Email</button>
-          <button class="btn btn-secondary" data-dismiss="modal" type="button">Fermer</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
   <script src="https://unpkg.com/popper.js@1.14.3/dist/umd/popper.min.js">
@@ -403,38 +382,7 @@
     var id = $("#id_audit_audit").val();
     window.location = "index.php";
   });
-  $("#send_email").click(function() {
-    var id = $(this).data("id");
-    $('#body_edit_mail').load('php/template/step3/edit_mail.php?id='+id,function(contenu){
-      $('#modale_edit_mail').modal({show:true});
-      $('#body_edit_mail').html(contenu);
-    });
-  });
 
-  $("#generer_pdf").click(function() {
-    var already_exist = $(this).data("already");
-    if(already_exist == true) {
-      swal({
-        title: 'Un document .pdf existe déja !',
-        text: "Voulez-vous écraser l'ancienne version ?",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Oui, Ecraser !',
-        cancelButtonText: 'Annuler'
-      }).then((result) => {
-        if (result.value) {
-          var id = $("#id_audit_audit").val();
-          window.location = "generer.php?id_audit="+id;
-        }
-      })
-    }else {
-      var id = $("#id_audit_audit").val();
-      window.location = "generer.php?id_audit="+id;
-    }
-
-  });
 
   </script>
 </body>

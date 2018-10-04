@@ -16,7 +16,7 @@ echo $sql2;
 $result2   = mysqli_query($db, $sql2);
 $nb = mysqli_num_rows($result2);
 if($nb == 0) {
-  $sql2a      = "INSERT INTO `audits2018_recommandations` (`id`, `nom`, `type`) VALUES (NULL, '".$recommandation."', '".$type."');";
+  $sql2a      = "INSERT INTO `audits2018_recommandations` (`id`, `nom`, `commentaire_de_base`, `type`) VALUES (NULL, '".$recommandation."', '".$commentaires."',  '".$type."');";
   echo $sql2a;
   $result2a   = mysqli_query($db, $sql2a);
 }
